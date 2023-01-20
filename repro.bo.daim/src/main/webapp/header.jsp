@@ -11,7 +11,6 @@
 	<ul>
 	<li><a href="./users.jsp" id="opz"> List Users </a></li>
 		<li><a href="./insertUser.jsp" id="opz"> Insert User </a></li>
-		<li><a href="./updateUser.jsp" id="opz"> Update user </a></li>
 		<li><a href="./LogoutServlet" id="opz">Logout</a></li>
 	</ul>
 </body>
