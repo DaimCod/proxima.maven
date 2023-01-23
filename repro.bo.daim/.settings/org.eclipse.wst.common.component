@@ -5,6 +5,12 @@
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/test/java"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
+        <dependent-module archiveName="maven-persistance-app-1.0-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/maven-persistance-app/maven-persistance-app">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="cerepro.mail.manager-0.9.2.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/cerepro.mail.manager/cerepro.mail.manager">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
         <property name="context-root" value="repro.bo.daim"/>
         <property name="java-output-path" value="/repro.bo.daim/target/classes"/>
     </wb-module>

@@ -5,6 +5,8 @@ import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 
+import org.proxima.common.mail.MailUtility;
+
 import proxima.info.app.DatabaseManagerSingleton;
 import proxima.info.app.dto.UserDto;
 
@@ -91,8 +93,18 @@ public class UserService {
 		user.setEnabled(enabled);
 		
 		System.out.println("ora chiamo l'altro insert");
-		return insert(user);
+		boolean userInserted = insert(user);
 		
+		if(userInserted) {
+//			boolean a = DatabaseManagerSingleton.getInstance().selectByEmail(email);
+			String text = "<body> <a href=\"http://localhost:8080/repro.bo.daim/completeRegistration.jsp?id=" + user.getId() + "\">Registrati ora su!</a> </body>";
+			boolean mail = MailUtility.sendSimpleMail(user.getEmail(), "Confirm registration", text);
+			if(mail) {
+				System.out.println("email mandata");
+			}
+		}
+		
+		return userInserted;
 	}
 	
 	public ArrayList<UserDto> selectAllUsers(){
@@ -135,6 +147,22 @@ public class UserService {
 			e.printStackTrace();
 		}
 		
+		return result;
+	}
+	
+	public boolean insertPassword(int id, String password) {
+		boolean result = false;
+		String idToFind = "" + id;
+		UserDto user=null;
+		try {
+			 user = DatabaseManagerSingleton.getInstance().selectById(idToFind);
+			 user.setPassword(password);
+			 result = DatabaseManagerSingleton.getInstance().updateUserById(id, user);
+			 
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return result;
 	}
 }

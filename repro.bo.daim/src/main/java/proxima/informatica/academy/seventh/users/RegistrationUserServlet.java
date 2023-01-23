@@ -30,7 +30,7 @@ public class RegistrationUserServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		 String email = request.getParameter("email");
-		 String password  = request.getParameter("password");
+		 String password  = null;
 		 String firstname  = request.getParameter("firstname");
 		 String lastname  = request.getParameter("lastname");
 		 String dateofbirth = request.getParameter("birthday");
@@ -44,7 +44,7 @@ public class RegistrationUserServlet extends HttpServlet {
 		}
 		 
 		 if(signedUp) {
-			 response.getWriter().append("<body> <h2>Registration completed successfully. <a href=\"./login.jsp\">login HERE</a></h2>");
+			 response.getWriter().append("<body> <h2>Registration completed successfully, complete it via email. <a href=\"./login.jsp\">login HERE</a></h2>");
 			
 		 }
 		 else {
